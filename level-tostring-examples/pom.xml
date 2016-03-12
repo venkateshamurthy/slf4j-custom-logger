@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.github.venkateshamurthy</groupId>
+		<artifactId>slf4j-custom-logger</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>level-tostring-examples</artifactId>
+	<name>level-tostring-examples</name>
+	<description>This module pertains examples on how log level sensitive object tostring examples.</description>
+	<packaging>jar</packaging>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<url>http://maven.apache.org</url>
+	<dependencies>
+		<dependency>
+			<groupId>org.eclipse.xtend</groupId>
+			<artifactId>org.eclipse.xtend.lib</artifactId>
+			<version>2.9.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.xtend</groupId>
+			<artifactId>xtend-maven-plugin</artifactId>
+			<version>2.9.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.venkateshamurthy</groupId>
+			<artifactId>level-logger</artifactId>
+		</dependency>
+		<dependency>
+            <groupId>com.github.venkateshamurthy</groupId>
+            <artifactId>level-tostring</artifactId>
+        </dependency>
+	</dependencies>
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<!-- Suite testng xml file to consider for test execution -->
+					<suiteXmlFiles>
+						<file>src/test/resources/testng.xml</file>
+					</suiteXmlFiles>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.xtend</groupId>
+				<artifactId>xtend-maven-plugin</artifactId>
+				<version>2.9.0</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>
+							<goal>testCompile</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.basedir}/xtend-gen/main</outputDirectory>
+							<testOutputDirectory>${project.basedir}/xtend-gen/test</testOutputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.github.venkateshamurthy</groupId>
+				<artifactId>level-logger</artifactId>
+				<version>1.0-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+                <groupId>com.github.venkateshamurthy</groupId>
+                <artifactId>level-tostring</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+		</dependencies>
+	</dependencyManagement>
+</project>

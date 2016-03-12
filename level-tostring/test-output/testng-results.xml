@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="1910" started-at="2016-03-12T16:56:13Z" finished-at="2016-03-12T16:56:15Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="1910" started-at="2016-03-12T16:56:13Z" finished-at="2016-03-12T16:56:15Z">
+      <class name="com.github.venkateshamurthy.util.tostring.TestToLevelledString">
+        <test-method status="PASS" signature="testToLevelledString()[pri:0, instance:com.github.venkateshamurthy.util.tostring.TestToLevelledString@7ba5b6a7]" name="testToLevelledString" duration-ms="1894" started-at="2016-03-12T22:26:13Z" finished-at="2016-03-12T22:26:15Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testToLevelledString -->
+      </class> <!-- com.github.venkateshamurthy.util.tostring.TestToLevelledString -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

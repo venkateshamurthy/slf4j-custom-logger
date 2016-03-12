@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="10" passed="10">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="517" started-at="2016-03-11T18:52:14Z" finished-at="2016-03-11T18:52:14Z">
+    <groups>
+      <group name="common">
+        <method signature="TestCustomFormattingLog4jLoggerAdapter.test1()[pri:0, instance:com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter@2224faea]" name="test1" class="com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter"/>
+        <method signature="TestCustomFormattingLog4jLoggerAdapter.test2()[pri:0, instance:com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter@2224faea]" name="test2" class="com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter"/>
+        <method signature="TestCustomFormattingLog4jLoggerAdapter.test2_Primitives()[pri:0, instance:com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter@2224faea]" name="test2_Primitives" class="com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter"/>
+        <method signature="TestCustomFormattingLog4jLoggerAdapter.testEscapes()[pri:0, instance:com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter@2224faea]" name="testEscapes" class="com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter"/>
+        <method signature="TestCustomFormattingLog4jLoggerAdapter.testMDC()[pri:0, instance:com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter@2224faea]" name="testMDC" class="com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter"/>
+        <method signature="TestCustomFormattingLog4jLoggerAdapter.testMDCContextMapValues()[pri:0, instance:com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter@2224faea]" name="testMDCContextMapValues" class="com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter"/>
+        <method signature="TestCustomFormattingLog4jLoggerAdapter.testMarker()[pri:0, instance:com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter@2224faea]" name="testMarker" class="com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter"/>
+        <method signature="TestCustomFormattingLog4jLoggerAdapter.testNull()[pri:0, instance:com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter@2224faea]" name="testNull" class="com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter"/>
+        <method signature="TestCustomFormattingLog4jLoggerAdapter.testNullParameter()[pri:0, instance:com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter@2224faea]" name="testNullParameter" class="com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter"/>
+        <method signature="TestCustomFormattingLog4jLoggerAdapter.testTrace()[pri:0, instance:com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter@2224faea]" name="testTrace" class="com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter"/>
+      </group> <!-- common -->
+    </groups>
+    <test name="Default test" duration-ms="517" started-at="2016-03-11T18:52:14Z" finished-at="2016-03-11T18:52:14Z">
+      <class name="com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter@2224faea]" name="setUp" is-config="true" duration-ms="204" started-at="2016-03-12T00:22:14Z" finished-at="2016-03-12T00:22:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="test1()[pri:0, instance:com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter@2224faea]" name="test1" duration-ms="111" started-at="2016-03-12T00:22:14Z" finished-at="2016-03-12T00:22:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- test1 -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter@2224faea]" name="tearDown" is-config="true" duration-ms="15" started-at="2016-03-12T00:22:14Z" finished-at="2016-03-12T00:22:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter@2224faea]" name="setUp" is-config="true" duration-ms="0" started-at="2016-03-12T00:22:14Z" finished-at="2016-03-12T00:22:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="test2()[pri:0, instance:com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter@2224faea]" name="test2" duration-ms="32" started-at="2016-03-12T00:22:14Z" finished-at="2016-03-12T00:22:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- test2 -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter@2224faea]" name="tearDown" is-config="true" duration-ms="0" started-at="2016-03-12T00:22:14Z" finished-at="2016-03-12T00:22:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter@2224faea]" name="setUp" is-config="true" duration-ms="0" started-at="2016-03-12T00:22:14Z" finished-at="2016-03-12T00:22:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="test2_Primitives()[pri:0, instance:com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter@2224faea]" name="test2_Primitives" duration-ms="15" started-at="2016-03-12T00:22:14Z" finished-at="2016-03-12T00:22:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- test2_Primitives -->
+        <test-method status="PASS" signature="testEscapes()[pri:0, instance:com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter@2224faea]" name="testEscapes" duration-ms="16" started-at="2016-03-12T00:22:14Z" finished-at="2016-03-12T00:22:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testEscapes -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter@2224faea]" name="setUp" is-config="true" duration-ms="0" started-at="2016-03-12T00:22:14Z" finished-at="2016-03-12T00:22:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter@2224faea]" name="tearDown" is-config="true" duration-ms="0" started-at="2016-03-12T00:22:14Z" finished-at="2016-03-12T00:22:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter@2224faea]" name="tearDown" is-config="true" duration-ms="0" started-at="2016-03-12T00:22:14Z" finished-at="2016-03-12T00:22:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="testMDC()[pri:0, instance:com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter@2224faea]" name="testMDC" duration-ms="16" started-at="2016-03-12T00:22:14Z" finished-at="2016-03-12T00:22:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testMDC -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter@2224faea]" name="setUp" is-config="true" duration-ms="0" started-at="2016-03-12T00:22:14Z" finished-at="2016-03-12T00:22:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter@2224faea]" name="tearDown" is-config="true" duration-ms="0" started-at="2016-03-12T00:22:14Z" finished-at="2016-03-12T00:22:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="testMDCContextMapValues()[pri:0, instance:com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter@2224faea]" name="testMDCContextMapValues" duration-ms="0" started-at="2016-03-12T00:22:14Z" finished-at="2016-03-12T00:22:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testMDCContextMapValues -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter@2224faea]" name="setUp" is-config="true" duration-ms="0" started-at="2016-03-12T00:22:14Z" finished-at="2016-03-12T00:22:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter@2224faea]" name="tearDown" is-config="true" duration-ms="0" started-at="2016-03-12T00:22:14Z" finished-at="2016-03-12T00:22:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter@2224faea]" name="setUp" is-config="true" duration-ms="0" started-at="2016-03-12T00:22:14Z" finished-at="2016-03-12T00:22:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="testMarker()[pri:0, instance:com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter@2224faea]" name="testMarker" duration-ms="16" started-at="2016-03-12T00:22:14Z" finished-at="2016-03-12T00:22:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testMarker -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter@2224faea]" name="tearDown" is-config="true" duration-ms="0" started-at="2016-03-12T00:22:14Z" finished-at="2016-03-12T00:22:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter@2224faea]" name="setUp" is-config="true" duration-ms="0" started-at="2016-03-12T00:22:14Z" finished-at="2016-03-12T00:22:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter@2224faea]" name="tearDown" is-config="true" duration-ms="0" started-at="2016-03-12T00:22:14Z" finished-at="2016-03-12T00:22:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter@2224faea]" name="setUp" is-config="true" duration-ms="0" started-at="2016-03-12T00:22:14Z" finished-at="2016-03-12T00:22:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter@2224faea]" name="tearDown" is-config="true" duration-ms="0" started-at="2016-03-12T00:22:14Z" finished-at="2016-03-12T00:22:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="testNull()[pri:0, instance:com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter@2224faea]" name="testNull" duration-ms="0" started-at="2016-03-12T00:22:14Z" finished-at="2016-03-12T00:22:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testNull -->
+        <test-method status="PASS" signature="testNullParameter()[pri:0, instance:com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter@2224faea]" name="testNullParameter" duration-ms="0" started-at="2016-03-12T00:22:14Z" finished-at="2016-03-12T00:22:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testNullParameter -->
+        <test-method status="PASS" signature="testTrace()[pri:0, instance:com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter@2224faea]" name="testTrace" duration-ms="0" started-at="2016-03-12T00:22:14Z" finished-at="2016-03-12T00:22:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testTrace -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter@2224faea]" name="setUp" is-config="true" duration-ms="0" started-at="2016-03-12T00:22:14Z" finished-at="2016-03-12T00:22:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter@2224faea]" name="tearDown" is-config="true" duration-ms="0" started-at="2016-03-12T00:22:14Z" finished-at="2016-03-12T00:22:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.github.venkateshamurthy.util.logging.TestCustomFormattingLog4jLoggerAdapter -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
