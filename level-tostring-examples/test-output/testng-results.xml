@@ -2,23 +2,23 @@
 <testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="303" started-at="2016-03-12T21:16:25Z" finished-at="2016-03-12T21:16:25Z">
+  <suite name="Default suite" duration-ms="384" started-at="2016-03-14T04:35:21Z" finished-at="2016-03-14T04:35:22Z">
     <groups>
       <group name="common">
-        <method signature="TestLoggingLevelledToString.testManager()[pri:0, instance:com.github.venkateshamurthy.util.tostring.examples.TestLoggingLevelledToString@3929d28]" name="testManager" class="com.github.venkateshamurthy.util.tostring.examples.TestLoggingLevelledToString"/>
+        <method signature="TestLoggingLevelledToString.testManager()[pri:0, instance:com.github.venkateshamurthy.util.tostring.examples.TestLoggingLevelledToString@6be3506d]" name="testManager" class="com.github.venkateshamurthy.util.tostring.examples.TestLoggingLevelledToString"/>
       </group> <!-- common -->
     </groups>
-    <test name="Default test" duration-ms="303" started-at="2016-03-12T21:16:25Z" finished-at="2016-03-12T21:16:25Z">
+    <test name="Default test" duration-ms="384" started-at="2016-03-14T04:35:21Z" finished-at="2016-03-14T04:35:22Z">
       <class name="com.github.venkateshamurthy.util.tostring.examples.TestLoggingLevelledToString">
-        <test-method status="PASS" signature="setUp()[pri:0, instance:com.github.venkateshamurthy.util.tostring.examples.TestLoggingLevelledToString@3929d28]" name="setUp" is-config="true" duration-ms="172" started-at="2016-03-13T02:46:25Z" finished-at="2016-03-13T02:46:25Z">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.github.venkateshamurthy.util.tostring.examples.TestLoggingLevelledToString@6be3506d]" name="setUp" is-config="true" duration-ms="140" started-at="2016-03-14T10:05:21Z" finished-at="2016-03-14T10:05:21Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="testManager()[pri:0, instance:com.github.venkateshamurthy.util.tostring.examples.TestLoggingLevelledToString@3929d28]" name="testManager" duration-ms="116" started-at="2016-03-13T02:46:25Z" finished-at="2016-03-13T02:46:25Z">
+        <test-method status="PASS" signature="testManager()[pri:0, instance:com.github.venkateshamurthy.util.tostring.examples.TestLoggingLevelledToString@6be3506d]" name="testManager" duration-ms="228" started-at="2016-03-14T10:05:21Z" finished-at="2016-03-14T10:05:22Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testManager -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.github.venkateshamurthy.util.tostring.examples.TestLoggingLevelledToString@3929d28]" name="tearDown" is-config="true" duration-ms="0" started-at="2016-03-13T02:46:25Z" finished-at="2016-03-13T02:46:25Z">
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.github.venkateshamurthy.util.tostring.examples.TestLoggingLevelledToString@6be3506d]" name="tearDown" is-config="true" duration-ms="0" started-at="2016-03-14T10:05:22Z" finished-at="2016-03-14T10:05:22Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->

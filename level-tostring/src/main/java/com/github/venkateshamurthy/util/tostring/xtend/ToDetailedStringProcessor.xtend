@@ -5,8 +5,10 @@ import com.github.venkateshamurthy.util.logging.LevelledToString
 import com.google.common.base.Preconditions
 import java.lang.annotation.ElementType
 import java.lang.annotation.Target
+import java.util.Arrays
 import java.util.Collection
 import java.util.List
+import java.util.concurrent.atomic.AtomicBoolean
 import javax.annotation.PostConstruct
 import org.eclipse.xtend.lib.annotations.Data
 import org.eclipse.xtend.lib.macro.AbstractClassProcessor
@@ -14,8 +16,11 @@ import org.eclipse.xtend.lib.macro.Active
 import org.eclipse.xtend.lib.macro.TransformationContext
 import org.eclipse.xtend.lib.macro.declaration.ClassDeclaration
 import org.eclipse.xtend.lib.macro.declaration.MutableClassDeclaration
+import org.eclipse.xtend.lib.macro.declaration.MutableFieldDeclaration
+import org.eclipse.xtend.lib.macro.declaration.TypeReference
 import org.eclipse.xtend.lib.macro.declaration.Visibility
-import java.util.concurrent.atomic.AtomicBoolean
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 /**
  * This annotation allows user to specify attribute set of a target object to be printed for 
@@ -35,8 +40,10 @@ annotation ToLevelledStringAnnotation {
  * This Class processor is responsible for adding level based toString methods to desired target 
  * classes
  */
-class ToLevelledStringCompilationParticipant extends AbstractClassProcessor {
+ 
 
+class ToLevelledStringCompilationParticipant extends AbstractClassProcessor {
+    val static Logger log = LoggerFactory.getLogger(typeof(ToLevelledStringCompilationParticipant).name)
     /**Do transform. */
     override doTransform(MutableClassDeclaration clazz, extension TransformationContext context) {
         val annotation = clazz.getAnnotation(ToLevelledStringAnnotation)
@@ -44,27 +51,38 @@ class ToLevelledStringCompilationParticipant extends AbstractClassProcessor {
             // Get fields using a transform helper
             val briefFields = new TransformHelper(context, clazz, LevelOfDetail.BRIEF).postConstruct
             val mediumFields = new TransformHelper(context, clazz, LevelOfDetail.MEDIUM).postConstruct
-
-            // Add toString(Level) method
-            clazz.addMethod("toString") [
-                returnType = context.newTypeReference("java.lang.String")
-                visibility = Visibility.PUBLIC
-                addParameter("level", context.newTypeReference(typeof(LevelOfDetail).name))
-                body = [
-                    '''
-                        if (level==null ){
-                           throw new IllegalArgumentException("level parameter cannot be null");
-                        }
-                        switch(level) {
-                           case NONE   : return "";
-                           case BRIEF  : return String.format("«briefFields.pattern»",  «briefFields.fieldsCsv»);
-                           case MEDIUM : return String.format("«mediumFields.pattern»", «mediumFields.fieldsCsv»);
-                           default     : return toString();
-                        }
-                    '''
+            if(clazz.findDeclaredField("log")==null){
+                clazz.addField("log")[
+                    type = context.newTypeReference(typeof(Logger).name)
+                    visibility = Visibility.PRIVATE
+                    static = true
+                    initializer = '''org.slf4j.LoggerFactory.getLogger(«clazz».class);'''
                 ]
-                docComment = "{@inheritDoc}"
-            ]
+            }
+            val TypeReference levelOfDetailRef = context.newTypeReference(typeof(LevelOfDetail).name)
+            // Add toString(Level) method
+            if(clazz.findDeclaredMethod("toString",levelOfDetailRef)==null){
+                clazz.addMethod("toString") [
+                    returnType = context.newTypeReference("java.lang.String")
+                    visibility = Visibility.PUBLIC
+                    addParameter("level", levelOfDetailRef)
+                    body = [
+                        '''
+                            log.trace("The special {}.toString({}) is invoked","«clazz.simpleName»",level.name());
+                            if (level==null ){
+                               throw new IllegalArgumentException("level parameter cannot be null");
+                            }
+                            switch(level) {
+                               case NONE   : return "";
+                               case BRIEF  : return String.format("«briefFields.pattern»",  «briefFields.fieldsCsv»);
+                               case MEDIUM : return String.format("«mediumFields.pattern»", «mediumFields.fieldsCsv»);
+                               default     : return toString();
+                            }
+                        '''
+                    ]
+                    docComment = "{@inheritDoc}"
+                ]
+            }
             // Add interface ToDetailedStringMarker
             clazz.implementedInterfaces = clazz.implementedInterfaces +
                 #[context.newTypeReference(typeof(LevelledToString).name)]
@@ -73,7 +91,7 @@ class ToLevelledStringCompilationParticipant extends AbstractClassProcessor {
 
     /** A static local extension  */
     def static getAnnotation(ClassDeclaration annotatedClass, Class<?> a) {
-        System.out.println("Annotated class name:" + annotatedClass.simpleName + " Annotation name:" + a.name)
+        log.debug("Annotated class name:" + annotatedClass.simpleName + " Annotation name:" + a.name)
         return annotatedClass.annotations.findLast [
             it.annotationTypeDeclaration.qualifiedName == a.name
         ]
@@ -104,7 +122,7 @@ class ToLevelledStringCompilationParticipant extends AbstractClassProcessor {
                         it.name.equals(LevelledToString.name)
                     ]
                     hasSuperClass.set(isLevelledToString);
-                    System.out.format("%s does have a superclass %s which further implement LevelledToString?%s %s\n",
+                    log.debug("{} does have a superclass {} which further implement LevelledToString?{} {}\n",
                         annotatedClass.simpleName, annotatedClass.extendedClass.name, hasSuper, isLevelledToString)
                 }
             }
@@ -116,7 +134,7 @@ class ToLevelledStringCompilationParticipant extends AbstractClassProcessor {
         }
 
         def private boolean hasSuper() {
-            System.out.format("%s has super class?%s \n", annotatedClass.simpleName, hasSuperClass.get)
+            log.trace("{} has super class?{} \n", annotatedClass.simpleName, hasSuperClass.get)
             return hasSuperClass.get
         }
 
@@ -131,6 +149,35 @@ class ToLevelledStringCompilationParticipant extends AbstractClassProcessor {
             return sb.toString()
         }
 
+        def private static getCoreFieldType(MutableFieldDeclaration field) {
+            val fieldType = field.type
+            var TypeReference componentType = null
+            if (fieldType.array) {
+                componentType = fieldType.arrayComponentType
+                log.trace("The field {} is an array of type: {}\n",field.simpleName,componentType)
+            } else if (fieldType.actualTypeArguments != null && !fieldType.actualTypeArguments.isEmpty) {
+                componentType = fieldType.actualTypeArguments.head
+                log.trace("The field {} is mostly a collection and is of type: {}\n",field.simpleName,componentType)
+            } else {
+                componentType = fieldType
+                log.trace("The field {} is not an array/collection and is of type: {}\n",field.simpleName,componentType)
+            }
+            // check if the class of this field has ToDetailedString implemented
+            log.debug(
+                "field:{}  type:{} and arrayComponentType:{} list of types:{} final core type:{}\n",
+                field.simpleName,
+                fieldType,
+                fieldType.arrayComponentType,
+                Arrays.toString(fieldType.actualTypeArguments),
+                componentType
+            )
+            return componentType
+        }
+
+        def private static isCollectionOrArray(MutableFieldDeclaration field) {
+            return field.type.array || !field.type.actualTypeArguments.isEmpty
+        }
+
         /**
          * Get field names or &lt;field&gt;.toString(level) as comma separated list
          * @return a string containing comma separated values of field names or &lt;field&gt;.toString(level)
@@ -142,21 +189,28 @@ class ToLevelledStringCompilationParticipant extends AbstractClassProcessor {
                 val field = annotatedClass.findDeclaredField(it)
                 if (field == null) {
                     throw new Exception(
-                        String::format("the field '%s' is absent in the class '%s'", it, annotatedClass.simpleName))
+                        String::format("the field '%s' is absent in the class '%s'.
+                        please specify the attributes present only in this class", it, annotatedClass.simpleName))
                 }
-                val fieldType = field.type
-                // check if the class of this field has ToDetailedString implemented
-                val componentType = if(fieldType.array) fieldType.arrayComponentType else fieldType
-                val toLevelledStringInterfaceExists = componentType.declaredSuperTypes.exists [
-                    it.name.equals(LevelledToString.name)
-                ]
+
+                val componentType = getCoreFieldType(field)
+                if (componentType == null) {
+                    throw new Exception(
+                        String::format("the field '%s' in the class '%s' doesn't have core component type '%s' which is strange!!", 
+                            it, annotatedClass.simpleName, componentType
+                        ))
+                }
+                val toLevelledStringInterfaceExists = componentType.declaredSuperTypes != null &&
+                    componentType.declaredSuperTypes.exists [
+                        LevelledToString.name.equals(it.name)
+                    ]
                 // If toDetailedString Interface is implemented then check if it array
                 if (toLevelledStringInterfaceExists) {
-                    if (fieldType.array) {
+                    if (isCollectionOrArray(field)) {
                         val utilName = typeof(ToLevelledStringUtil).name
-                        sb.append('''«utilName».toString(«it», level), ''')
+                        sb.append('''«it»==null?"null":«utilName».toString(«it», level), ''')
                     } else {
-                        sb.append(it).append(".toString(level), ");
+                        sb.append('''«it»==null?"null":«it».toString(level), ''');
                     }
                 } else {
                     sb.append(it).append(", ")
@@ -220,21 +274,22 @@ class ToLevelledStringUtil {
      * @param level is {@link LevelOfDetail} indicating attributes of each object in set to be chosen
      * @return String form of level based attributes
      */
-    def static String toString(Collection<LevelledToString> objects, LevelOfDetail level) {
+    def static <T extends Collection<? extends LevelledToString>> String toString(T objects, LevelOfDetail level) {
         val nonNullObjects = objects != null
         val nonNullLevel = level != null
         Preconditions.checkArgument(nonNullObjects && nonNullLevel,
             "The Collection<LevelledToString> objects or level cannot be null/empty")
         val StringBuilder pattern = new StringBuilder()
-        val objectsLength = objects.length
+        val objectsLength = objects.size
         val String[] fieldArray = newArrayOfSize(objectsLength)
-        for (var int i = 0; i < objectsLength; i++) {
+        var int i = 0;
+        for (LevelledToString lToS:objects) {
             pattern.append("%s ")
-            val object = objects.get(i)
+            val object = lToS
             val nonNullObject = object != null
             Preconditions.checkArgument(nonNullObject, "The elements in object collection cannot be null")
             val objectStringValue = object.toString(level)
-            fieldArray.set(i, objectStringValue)
+            fieldArray.set(i++, objectStringValue)
         }
         return String::format(pattern.toString(), fieldArray)
     }

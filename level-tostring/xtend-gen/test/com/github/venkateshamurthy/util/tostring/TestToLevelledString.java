@@ -10,6 +10,7 @@ import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+@Test(groups = { "common" })
 @SuppressWarnings("all")
 public class TestToLevelledString {
   @Extension
@@ -26,6 +27,10 @@ public class TestToLevelledString {
     _builder.append("import java.util.List");
     _builder.newLine();
     _builder.append("import java.util.ArrayList");
+    _builder.newLine();
+    _builder.append("import java.util.Set");
+    _builder.newLine();
+    _builder.append("import java.util.HashSet");
     _builder.newLine();
     _builder.append("import org.apache.commons.lang3.builder.ToStringBuilder");
     _builder.newLine();
@@ -109,7 +114,7 @@ public class TestToLevelledString {
     _builder.append("class Employer extends Employee{");
     _builder.newLine();
     _builder.append("    ");
-    _builder.append("val List<Employee> reportees = new ArrayList<Employee>();");
+    _builder.append("val Set<Employee> reportees = new HashSet<Employee>();");
     _builder.newLine();
     _builder.append("    ");
     _builder.append("new(Date dateOfBirth, String name, double salary) {");

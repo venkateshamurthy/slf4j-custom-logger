@@ -1,5 +1,6 @@
 package com.github.venkateshamurthy.util.tostring.examples;
 
+import java.util.Collections;
 import java.util.Date;
 
 import org.apache.log4j.Level;
@@ -12,6 +13,7 @@ import org.testng.annotations.Test;
 
 import com.github.venkateshamurthy.util.tostring.xtend.Employee;
 import com.github.venkateshamurthy.util.tostring.xtend.Employer;
+import com.google.common.collect.Lists;
 
 @Test(groups = "common")
 public class TestLoggingLevelledToString {
@@ -37,16 +39,32 @@ public class TestLoggingLevelledToString {
 	}
 
 	public void testManager() {
-		Logger log = LoggerFactory.getLogger(this.getClass());
+		Logger log=LoggerFactory.getLogger(this.getClass());
 		Employee a = new Employee(new Date(70, 6, 24), "Aemployee", 2500000d);
 		Employee b = new Employee(new Date(75, 9, 20), "Bemployee", 2500000d);
-		Employer m = new Employer(new Date(65, 1, 1), "Manager", 5000000d, a, b);
-		log.debug("Manager: {}", m);
-		String msg="Manager: [Manager Mon Feb 01 00:00:00 IST 1965 5000000.0 ] "
-				+ "Aemployee Fri Jul 24 00:00:00 IST 1970 2500000.0  "
-				+ "Bemployee Mon Oct 20 00:00:00 IST 1975 2500000.0   ";
-		Assert.assertEquals(customAppender.eventsByLevel(Level.DEBUG).size(),1);
-		Assert.assertEquals(customAppender.topEventByLevel(Level.DEBUG).getMessage(), msg);
+		Employer boss = new Employer(new Date(60, 3, 6),"BigBoss", 25000000d);
+		boss.setBudget(100000d);
+        Employer m = new Employer(new Date(65, 1, 1),"Manager", 5000000d);
+        m.setBudget(10000d);
+        boss.addReportee(m);
+        m.addReportee(a);
+        m.addReportee(b);
+        a.setBoss(m.getName());
+        b.setBoss(m.getName());
+        m.setBoss(boss.getName());
+        log.debug("Boss->{}",boss);
+        String bossMsg="Boss->[BigBoss Wed Apr 06 00:00:00 IST 1960 2.5E7 null ]"
+        		+ " 100000.0 [Manager Mon Feb 01 00:00:00 IST 1965 5000000.0 BigBoss ]"
+        		+ " 10000.0 Aemployee Fri Jul 24 00:00:00 IST 1970 2500000.0 Manager"
+        		+ "  Bemployee Mon Oct 20 00:00:00 IST 1975 2500000.0 Manager     ";
+        Assert.assertEquals(customAppender.eventsByLevel(Level.DEBUG).size(),1);
+		Assert.assertEquals(customAppender.topEventByLevel(Level.DEBUG).getMessage(), bossMsg);
+		log.debug("Manager->{}",m);
+		String mgrMsg="Manager->[Manager Mon Feb 01 00:00:00 IST 1965 5000000.0 BigBoss ] 10000.0"
+				+ " Aemployee Fri Jul 24 00:00:00 IST 1970 2500000.0 Manager"
+				+ "  Bemployee Mon Oct 20 00:00:00 IST 1975 2500000.0 Manager   ";
+		Assert.assertEquals(customAppender.eventsByLevel(Level.DEBUG).size(),2);
+		Assert.assertEquals(customAppender.topEventByLevel(Level.DEBUG).getMessage(), mgrMsg);
 
 	}
 }

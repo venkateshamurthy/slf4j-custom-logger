@@ -9,7 +9,7 @@
       </run>
     </groups>
     <classes>
-      <!--<class name="com.github.venkateshamurthy.util.tostring.Test*" />-->
+      <class name="com.github.venkateshamurthy.util.tostring.TestToLevelledString" />
     </classes>
   </test>
 </suite>

@@ -4,7 +4,7 @@ import org.eclipse.xtend.core.compiler.batch.XtendCompilerTester
 import org.testng.annotations.Test
 import org.testng.Assert
 import org.eclipse.xtend.lib.macro.services.Problem
-
+@Test(groups=#['common'])
 class TestToLevelledString {
     extension XtendCompilerTester compilerTester = XtendCompilerTester.newXtendCompilerTester(class.classLoader)
     @Test
@@ -17,6 +17,8 @@ class TestToLevelledString {
         import java.util.Date
         import java.util.List
         import java.util.ArrayList
+        import java.util.Set
+        import java.util.HashSet
         import org.apache.commons.lang3.builder.ToStringBuilder
         import com.github.venkateshamurthy.util.logging.LevelOfDetail
         
@@ -48,7 +50,7 @@ class TestToLevelledString {
         }
         @ToLevelledStringAnnotation(medium=#['reportees'])
         class Employer extends Employee{
-            val List<Employee> reportees = new ArrayList<Employee>();
+            val Set<Employee> reportees = new HashSet<Employee>();
             new(Date dateOfBirth, String name, double salary) {
                 super(dateOfBirth, name, salary)
             }

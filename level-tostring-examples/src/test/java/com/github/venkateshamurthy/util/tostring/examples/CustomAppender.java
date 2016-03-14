@@ -15,7 +15,18 @@ import org.apache.log4j.spi.LoggingEvent;
 public class CustomAppender extends AppenderSkeleton {
 
    /** The map. */
-   private final Map<Level, List<LoggingEvent>> map = new LinkedHashMap<>();
+   private final Map<Level, List<LoggingEvent>> map = new LinkedHashMap<Level, List<LoggingEvent>>(){
+	   {
+		   put(Level.ALL,new ArrayList<LoggingEvent>());
+		   put(Level.TRACE,new ArrayList<LoggingEvent>());
+		   put(Level.DEBUG,new ArrayList<LoggingEvent>());
+		   put(Level.INFO,new ArrayList<LoggingEvent>());
+		   put(Level.WARN,new ArrayList<LoggingEvent>());
+		   put(Level.ERROR,new ArrayList<LoggingEvent>());
+		   put(Level.OFF,new ArrayList<LoggingEvent>());
+		   put(Level.FATAL,new ArrayList<LoggingEvent>());
+	   }
+   };
    private final List<LoggingEvent> list = new ArrayList<>();
    /** The extract location info. */
    public boolean extractLocationInfo = false;
