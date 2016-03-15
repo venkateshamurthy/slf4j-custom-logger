@@ -53,18 +53,24 @@ public class TestLoggingLevelledToString {
         b.setBoss(m.getName());
         m.setBoss(boss.getName());
         log.debug("Boss->{}",boss);
+        String bossMsgToStringStyle="Boss->[[BigBoss,Wed Apr 06 00:00:00 IST 1960,salary=2.5E7,<null>],budget=100000.0,"
+        		+ "[[Manager,Mon Feb 01 00:00:00 IST 1965,salary=5000000.0,BigBoss],budget=10000.0,"
+        		+ "[Aemployee,Fri Jul 24 00:00:00 IST 1970,salary=2500000.0,Manager],[Bemployee,Mon Oct 20 00:00:00 IST 1975,salary=2500000.0,Manager]]]";
         String bossMsg="Boss->[BigBoss Wed Apr 06 00:00:00 IST 1960 2.5E7 null ]"
         		+ " 100000.0 [Manager Mon Feb 01 00:00:00 IST 1965 5000000.0 BigBoss ]"
         		+ " 10000.0 Aemployee Fri Jul 24 00:00:00 IST 1970 2500000.0 Manager"
         		+ "  Bemployee Mon Oct 20 00:00:00 IST 1975 2500000.0 Manager     ";
         Assert.assertEquals(customAppender.eventsByLevel(Level.DEBUG).size(),1);
-		Assert.assertEquals(customAppender.topEventByLevel(Level.DEBUG).getMessage(), bossMsg);
+		Assert.assertEquals(customAppender.topEventByLevel(Level.DEBUG).getMessage(), bossMsgToStringStyle);
 		log.debug("Manager->{}",m);
+		String mgrMsgWithStyle="Manager->[[Manager,Mon Feb 01 00:00:00 IST 1965,salary=5000000.0,BigBoss],budget=10000.0,"
+				+ "[Aemployee,Fri Jul 24 00:00:00 IST 1970,salary=2500000.0,Manager],"
+				+ "[Bemployee,Mon Oct 20 00:00:00 IST 1975,salary=2500000.0,Manager]]";
 		String mgrMsg="Manager->[Manager Mon Feb 01 00:00:00 IST 1965 5000000.0 BigBoss ] 10000.0"
 				+ " Aemployee Fri Jul 24 00:00:00 IST 1970 2500000.0 Manager"
 				+ "  Bemployee Mon Oct 20 00:00:00 IST 1975 2500000.0 Manager   ";
 		Assert.assertEquals(customAppender.eventsByLevel(Level.DEBUG).size(),2);
-		Assert.assertEquals(customAppender.topEventByLevel(Level.DEBUG).getMessage(), mgrMsg);
+		Assert.assertEquals(customAppender.topEventByLevel(Level.DEBUG).getMessage(), mgrMsgWithStyle);
 
 	}
 }

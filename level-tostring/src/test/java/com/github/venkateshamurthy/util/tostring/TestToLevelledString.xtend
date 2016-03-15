@@ -22,16 +22,19 @@ class TestToLevelledString {
         import org.apache.commons.lang3.builder.ToStringBuilder
         import com.github.venkateshamurthy.util.logging.LevelOfDetail
         
-        @ToLevelledStringAnnotation(brief=#['name','dateOfBirth'], medium=#['name','dateOfBirth','salary'])
+        @ToLevelledStringAnnotation(brief=#['name','dateOfBirth'], medium=#['boss','name','dateOfBirth','salary'])
         class Employee {
             val protected Date dateOfBirth
             val protected String name
             val protected double salary
-            
+            var Employer boss;
             new(Date dateOfBirth, String name, double salary){
                 this.name = name
                 this.dateOfBirth = dateOfBirth
                 this.salary = salary
+            }
+            def setBoss(Employer boss){
+                this.boss = boss
             }
             def getDateOfBirth(){
                 dateOfBirth

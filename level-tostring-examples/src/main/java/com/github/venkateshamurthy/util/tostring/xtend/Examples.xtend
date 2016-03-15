@@ -31,7 +31,6 @@ class Employee {
     }
 
     override String toString() {
-        System.out.println("The standard " + getClass().getSimpleName() + ".toString invoked for " + name)
         return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE, false, false)
     }
 
