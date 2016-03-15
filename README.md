@@ -9,7 +9,7 @@ This project aims to acheive the following objectives:
 
 *   The objects to be logged (notably the value objects) can now be enabled for building string representations based on [level of detail](/level-logger/src/main/java/com/github/venkateshamurthy/util/logging/LevelOfDetail.java) where brief can mean few key attributes and medium level of detail can add key and other import
 
-    +    objects can be made to implement the interface [ToLevelledString](/level-logger/src/main/java/com/github/venkateshamurthy/util/logging/ToLevelledString.java) and build the <code>toString(LevelOfDetail)</code> manually
+    +    objects can be made to implement the interface [LevelledToString](/level-logger/src/main/java/com/github/venkateshamurthy/util/logging/LevelledToString.java) and build the <code>toString(LevelOfDetail)</code> manually
     +    objects can be written in eclipse xtend code to have [@ToLevelledStringAnnotation](/level-tostring/src/main/java/com/github/venkateshamurthy/util/tostring/xtend/ToDetailedStringProcessor.xtend) that generates the toString(LevelOfDetail) method
 
 *   The project has a custom slf4j logger that deals with ToLevelledString instances on a special case to call the respective toString(LevelOfDetail) rather than default toString method
