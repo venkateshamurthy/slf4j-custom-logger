@@ -1,20 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0"?>
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-                      http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.venkateshamurthy</groupId>
-	<artifactId>slf4j-custom-logger</artifactId>
+	<artifactId>level-tostring-sample</artifactId>
+	<name>level-tostring-sample</name>
+	<description>This module is a test to check if levelled to string works.</description>
+	<packaging>jar</packaging>
 	<version>1.0-SNAPSHOT</version>
-	<packaging>pom</packaging>
-	<name>${project.artifactId}</name>
-	<description>SLF4J Custom Logger</description>
-	<modules>
-		<module>level-logger</module>
-		<module>level-tostring</module>
-		<module>level-tostring-examples</module>
-	</modules>
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<min_jdk_version>1.7</min_jdk_version>
 		<max_jdk_version>1.7</max_jdk_version>
 		<source_jdk_version>${min_jdk_version}</source_jdk_version>
@@ -22,7 +18,32 @@
 		<slf4j.version>1.7.10</slf4j.version>
 		<spring.version>4.1.0.RELEASE</spring.version>
 	</properties>
+	<url>http://maven.apache.org</url>
 	<dependencies>
+		<dependency>
+			<groupId>org.eclipse.xtend</groupId>
+			<artifactId>org.eclipse.xtend.lib</artifactId>
+			<version>2.9.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.xtend</groupId>
+			<artifactId>xtend-maven-plugin</artifactId>
+			<version>2.9.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.venkateshamurthy</groupId>
+			<artifactId>level-logger</artifactId>
+			<!-- Ensure to have this dependency locally till this is pushed to OSSRH -->
+			<scope>system</scope>
+			<systemPath>${user.home}/.m2/repository/com/github/venkateshamurthy/level-logger/1.0-SNAPSHOT/level-logger-1.0-SNAPSHOT.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.github.venkateshamurthy</groupId>
+			<artifactId>level-tostring</artifactId>
+			<!-- Ensure to have this dependency locally till this is pushed to OSSRH -->
+			<scope>system</scope>
+			<systemPath>${user.home}/.m2/repository/com/github/venkateshamurthy/level-tostring/1.0-SNAPSHOT/level-tostring-1.0-SNAPSHOT.jar</systemPath>
+		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-simple</artifactId>
@@ -39,12 +60,6 @@
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.16</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-expression</artifactId>
-			<version>${spring.version}</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
@@ -76,11 +91,6 @@
 			<version>3.4</version>
 		</dependency>
 		<dependency>
-			<groupId>net.sf.oval</groupId>
-			<artifactId>oval</artifactId>
-			<version>1.84</version>
-		</dependency>
-		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 			<version>19.0</version>
@@ -91,7 +101,6 @@
 			<version>6.9.10</version>
 			<scope>test</scope>
 		</dependency>
-
 	</dependencies>
 	<build>
 		<finalName>${project.artifactId}</finalName>
@@ -111,19 +120,6 @@
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.18.1</version>
-				<configuration>
-					<argLine>-Xmx512m -XX:MaxPermSize=512m -XX:-UseSplitVerifier</argLine>
-					<parallel>classes</parallel>
-					<runOrder>alphabetical</runOrder>
-					<redirectTestOutputToFile>true</redirectTestOutputToFile>
-				</configuration>
-				<dependencies>
-				</dependencies>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.5.1</version>
 				<configuration>
@@ -131,29 +127,47 @@
 					<target>${target_jdk_version}</target>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<!-- Suite testng xml file to consider for test execution -->
+					<suiteXmlFiles>
+						<file>src/test/resources/testng.xml</file>
+					</suiteXmlFiles>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.xtend</groupId>
+				<artifactId>xtend-maven-plugin</artifactId>
+				<version>2.9.2</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>
+							<goal>testCompile</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.basedir}/xtend-gen/main</outputDirectory>
+							<testOutputDirectory>${project.basedir}/xtend-gen/test</testOutputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
-	<pluginRepositories>
-		<pluginRepository>
-			<id>apache-snapshots</id>
-			<name>Apache Snapshot Repository</name>
-			<url>https://repository.apache.org/content/groups/snapshots-group/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</pluginRepository>
-	</pluginRepositories>
 	<dependencyManagement>
 		<dependencies>
-			<!-- Logging with SLF4J & LogBack -->
 			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-api</artifactId>
-				<version>${slf4j.version}</version>
+				<groupId>com.github.venkateshamurthy</groupId>
+				<artifactId>level-logger</artifactId>
+				<version>1.0-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>com.github.venkateshamurthy</groupId>
+				<artifactId>level-tostring</artifactId>
+				<version>1.0-SNAPSHOT</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

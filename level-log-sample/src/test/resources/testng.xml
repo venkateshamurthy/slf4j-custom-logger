@@ -1,0 +1,15 @@
+<suite name="Test suite" verbose="1">
+  <test name="Group of group Test">
+    <groups>
+      <define name="include-group">
+        <include name="common" />
+      </define>
+      <run>
+        <include name="include-group" />
+      </run>
+    </groups>
+    <classes>
+      <class name="com.github.venkateshamurthy.util.logging.TestSample" />-->
+    </classes>
+  </test>
+</suite>
