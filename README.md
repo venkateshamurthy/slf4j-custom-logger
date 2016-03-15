@@ -7,10 +7,10 @@ Reference : Please refer to [blog](http://vemurthy.blogspot.in/2016/03/slf4j-cus
 ----------
 This project aims to acheive the following objectives:
 
-*   The objects to be logged (notably the value objects) can now be enabled for building string representations based on [level-logger/src/main/java/com/github/venkateshamurthy/util/logging/](level of detail); where brief can mean few key attributes and medium level of detail can add key and other important but non-key attributes
+*   The objects to be logged (notably the value objects) can now be enabled for building string representations based on [level-logger/src/main/java/com/github/venkateshamurthy/util/logging/](level of detail); where brief can mean few key attributes and medium level of detail can add key and other import
 
-    +    objects can be made to implement the interface [level-logger/src/main/java/com/github/venkateshamurthy/util/logging/ToLevelledString.java](ToLevelledString) and build the <code>toString(LevelOfDetail)</code> manually
-    +    objects can be written in eclipse xtend code to have [level-tostring/src/main/java/com/github/venkateshamurthy/util/tostring/xtend/ToDetailedStringProcessor.xtend](@ToLevelledStringAnnotation) that generates the toString(LevelOfDetail) method
+    +    objects can be made to implement the interface [ToLevelledString](/level-logger/src/main/java/com/github/venkateshamurthy/util/logging/ToLevelledString.java) and build the <code>toString(LevelOfDetail)</code> manually
+    +    objects can be written in eclipse xtend code to have [@ToLevelledStringAnnotation](/level-tostring/src/main/java/com/github/venkateshamurthy/util/tostring/xtend/ToDetailedStringProcessor.xtend) that generates the toString(LevelOfDetail) method
 
 *   The project has a custom slf4j logger that deals with ToLevelledString instances on a special case to call the respective toString(LevelOfDetail) rather than default toString method
 
