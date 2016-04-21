@@ -54,7 +54,7 @@ public class CustomFormattingLog4jLoggerAdapter extends AbstractLog4jLoggerAdapt
          IFormattingTuple ft;
          if (args != null && args.length == 1) {
             ft =
-                  args[0].getClass().isArray() ? tupleFactory.arrayFormat(slf4jLevel, format,
+                  args[0]!=null && args[0].getClass().isArray() ? tupleFactory.arrayFormat(slf4jLevel, format,
                         ObjectUtils.toObjectArray(args[0])) : tupleFactory.format(slf4jLevel,
                         format, args[0]);
          } else if (args != null && args.length == 2) {
